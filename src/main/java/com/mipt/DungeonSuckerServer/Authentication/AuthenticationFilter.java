@@ -1,5 +1,6 @@
-package com.mipt.DungeonSuckerServer;
+package com.mipt.DungeonSuckerServer.Authentication;
 
+import com.mipt.DungeonSuckerServer.Authentication.AuthenticationService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;

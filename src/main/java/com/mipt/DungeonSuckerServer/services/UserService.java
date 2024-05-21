@@ -2,6 +2,7 @@ package com.mipt.DungeonSuckerServer.services;
 
 import com.mipt.DungeonSuckerServer.entities.UserEntity;
 import org.springframework.data.domain.Example;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.mipt.DungeonSuckerServer.repositories.UserRepository;
 
@@ -9,10 +10,13 @@ import java.util.List;
 
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
+    // private BCryptPasswordEncoder passwordEncoder;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+        // this.passwordEncoder = passwordEncoder;
     }
 
     public void save(UserEntity userEntity){
@@ -36,4 +40,14 @@ public class UserService {
         example.setName(name);
         return userRepository.findOne(Example.of(example)).get();
     }
+
+    public void registerUser(UserEntity user) {
+        // user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+    }
+
+    public static boolean compareUserPassword(String tryPassword) {
+        return true;
+    }
 }
+
