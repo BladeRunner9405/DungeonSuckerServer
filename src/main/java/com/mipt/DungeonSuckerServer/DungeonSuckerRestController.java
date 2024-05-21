@@ -32,8 +32,12 @@ public class DungeonSuckerRestController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody UserEntity user) {
-        userService.save(user);
+    public ResponseEntity<String> registerUser(@RequestBody String login, String password) {
+        UserEntity user = new UserEntity();
+        user.setEmail(login);
+        user.setPassword(password);
+
+        userService.registerUser(user);
         return ResponseEntity.ok("Пользователь успешно зарегистрирован");
     }
 
