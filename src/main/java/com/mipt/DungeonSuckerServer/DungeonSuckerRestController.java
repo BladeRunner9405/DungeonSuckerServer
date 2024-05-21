@@ -4,10 +4,7 @@ import com.mipt.DungeonSuckerServer.entities.UserEntity;
 import com.mipt.DungeonSuckerServer.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class DungeonSuckerRestController {
@@ -32,12 +29,16 @@ public class DungeonSuckerRestController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody String login, String password) {
+    public ResponseEntity<String> registerUser(@RequestHeader String login, @RequestHeader String password) {
         UserEntity user = new UserEntity();
+
+        if (login == null || password == null) {
+            return ResponseEntity.ok("Не введён логин или пароль");
+        }
         user.setEmail(login);
         user.setPassword(password);
+        userService.save(user);
 
-        userService.registerUser(user);
         return ResponseEntity.ok("Пользователь успешно зарегистрирован");
     }
 
