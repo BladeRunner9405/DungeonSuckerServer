@@ -14,13 +14,13 @@ public class DungeonSuckerRestController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/api/sendDeadPlayerData")
+    @PostMapping({"/api/sendDeadPlayerData", "/office/sendDeadPlayerData"})
     public String sendJSON(@RequestBody String json) {
         DeadPlayerDataHandler.saveDeadPlayerData(json);
         return "JSON received: " + json;
     }
 
-    @GetMapping("/api/receiveDeadPlayerData")
+    @GetMapping({"/api/receiveDeadPlayerData", "/office/receiveDeadPlayerData"})
     public String receiveJSON() {
         return DeadPlayerDataHandler.getRandomDeadPlayerData();
     }
