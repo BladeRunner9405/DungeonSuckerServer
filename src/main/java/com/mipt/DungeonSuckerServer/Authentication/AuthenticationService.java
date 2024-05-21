@@ -24,7 +24,8 @@ public class AuthenticationService {
         if (isOfficeRequest(request)) {
             String login = request.getHeader(AUTH_LOGIN_HEADER_NAME);
             String password = request.getHeader(AUTH_PASSWORD_HEADER_NAME);
-            if (login == null || password == null || !password.equals(UserService.compareUserPassword(login, password))) {
+
+            if (login == null || password == null || !UserService.compareUserPassword(login, password)) {
                 throw new BadCredentialsException("Invalid login or password");
             }
             return new LoginPasswordAuthentication(login, password, AuthorityUtils.NO_AUTHORITIES);
