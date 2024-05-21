@@ -1,13 +1,10 @@
 package com.mipt.DungeonSuckerServer.Authentication;
 
-import com.mipt.DungeonSuckerServer.ApiKeyAuthentication;
 import com.mipt.DungeonSuckerServer.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 public class AuthenticationService {
 
@@ -25,13 +22,13 @@ public class AuthenticationService {
             return new ApiKeyAuthentication(apiKey, AuthorityUtils.NO_AUTHORITIES);
         }
         if (isOfficeRequest(request)) {
-//            String login = request.getHeader(AUTH_LOGIN_HEADER_NAME);
-//            String password = request.getHeader(AUTH_PASSWORD_HEADER_NAME);
-//            if (login == null || password == null || !password.equals(UserService.compareUserPassword(login))) {
-//                throw new BadCredentialsException("Invalid login or password");
-//            }
-//            return new LoginPasswordAuthentication(login, password, AuthorityUtils.NO_AUTHORITIES);
-            throw new BadCredentialsException("This service is under development...");
+            String login = request.getHeader(AUTH_LOGIN_HEADER_NAME);
+            String password = request.getHeader(AUTH_PASSWORD_HEADER_NAME);
+            if (login == null || password == null || !password.equals(UserService.compareUserPassword(login, password))) {
+                throw new BadCredentialsException("Invalid login or password");
+            }
+            return new LoginPasswordAuthentication(login, password, AuthorityUtils.NO_AUTHORITIES);
+
         }
 
         return new ApiKeyAuthentication(null, AuthorityUtils.NO_AUTHORITIES);

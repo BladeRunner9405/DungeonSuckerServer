@@ -46,7 +46,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public static boolean compareUserPassword(String tryPassword) {
+    public static boolean compareUserPassword(String login, String tryPassword) {
         return true;
     }
 }

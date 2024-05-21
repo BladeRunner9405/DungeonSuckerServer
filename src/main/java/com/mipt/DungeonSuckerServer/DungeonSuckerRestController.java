@@ -26,15 +26,15 @@ public class DungeonSuckerRestController {
     }
 
 
-//    @GetMapping("/office/myOffice")
-//    public String myOffice() {
-//        return "You are in my office!";
-//    }
+    @GetMapping("/office/myOffice")
+    public String myOffice() {
+        return "You are in my office!";
+    }
 
-//    @PostMapping("/register")
-//    public ResponseEntity<String> registerUser(@RequestBody UserEntity user) {
-//        userService.registerUser(user);
-//        return ResponseEntity.ok("Пользователь успешно зарегистрирован");
-//    }
+    @PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody UserEntity user) {
+        userService.registerUser(user);
+        return ResponseEntity.ok("Пользователь успешно зарегистрирован");
+    }
 
 }
