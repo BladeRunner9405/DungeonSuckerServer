@@ -23,8 +23,5 @@ public class InitiateUtils implements CommandLineRunner {
         userEntity.setPassword("42");
         userEntity.setEmail("vanya.kalinin@kloun.ru");
         userService.save(userEntity);
-
-        System.out.println(userService.findByUUID("w523sc4ge2ac3512ge4"));
-        System.out.println(userService.findByName("silly-erp"));
     }
 }

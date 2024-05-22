@@ -35,7 +35,7 @@ public class DungeonSuckerRestController {
         if (login == null || password == null) {
             return ResponseEntity.ok("Не введён логин или пароль");
         }
-        user.setEmail(login);
+        user.setName(login);
         user.setPassword(password);
         userService.save(user);
 
