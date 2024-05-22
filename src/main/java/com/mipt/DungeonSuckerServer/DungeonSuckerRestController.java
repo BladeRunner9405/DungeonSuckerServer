@@ -32,7 +32,7 @@ public class DungeonSuckerRestController {
     public ResponseEntity<String> registerUser(@RequestHeader String login, @RequestHeader String password) {
         UserEntity user = new UserEntity();
 
-        if (login == null || password == null) {
+        if (login.isEmpty() || password.isEmpty()) {
             return ResponseEntity.ok("Не введён логин или пароль");
         }
         user.setName(login);
@@ -41,5 +41,4 @@ public class DungeonSuckerRestController {
 
         return ResponseEntity.ok("Пользователь успешно зарегистрирован");
     }
-
 }
