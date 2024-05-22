@@ -11,7 +11,8 @@ public class DeadPlayerDataHandler {
     }
 
     public static String getRandomDeadPlayerData() {
+        String stub = "[[6],[0,1,1,1,1],[0,5,0,0,0,0,0,0,25,5]]";
         DeadPlayerEntity deadPlayer = DeadPlayerService.getRandom();
-        return deadPlayer == null ? null : deadPlayer.getData();
+        return deadPlayer == null ? stub : deadPlayer.getData();
     }
 }
